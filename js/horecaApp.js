@@ -1,14 +1,17 @@
-const PRIJSFRIS = 2;
-const PRIJSBIER = 3;
-const PRIJSWIJN = 4;
-const PRIJSBITTERBALLEN8 = 5;
-const PRIJSBITTERBALLEN16 = 8;
-
-var totaalAantalFris = 0;
-var totaalAantalBier = 0;
-var totaalAantalWijn = 0;
-var totaalBitterballen8 = 0;
-var totaalBitterballen16 = 0;
+var prijzenLijst = {
+	"PRIJSFRIS": 2,
+	"PRIJSBIER": 3,
+	"PRIJSWIJN": 4,
+	"PRIJSBITTERBALLEN8": 5,
+	"PRIJSBITTERBALLEN16": 8,
+};
+var bestellingLijst = {
+	"totaalAantalFris": 0,
+	"totaalAantalBier": 0,
+	"totaalAantalWijn": 0,
+	"totaalBitterballen8": 0,
+	"totaalBitterballen16": 0,
+};
 
 var loopBestelling = true;
 
@@ -16,7 +19,7 @@ while (loopBestelling == true) {
 	var bestelling = prompt("Welke bestelling wilt u toevoegen?");
 
 	if (bestelling == "stop") {
-		if (totaalAantalFris == 0 && totaalAantalBier == 0 && totaalAantalWijn == 0 && totaalBitterballen8 == 0 && totaalBitterballen16 == 0) {
+		if (bestellingLijst["totaalAantalFris"] == 0 && bestellingLijst["totaalAantalBier"] == 0 && bestellingLijst["totaalAantalWijn"] == 0 && bestellingLijst["totaalBitterballen8"] == 0 && bestellingLijst["totaalBitterballen16"] == 0) {
 			alert("U heeft nog niks besteld!")
 		}
 		else {
@@ -35,7 +38,7 @@ while (loopBestelling == true) {
 				}
 				else {
 					loopBitterballen8 = false;
-					totaalBitterballen8 = Number(totaalBitterballen8) + Number(aantalBitterballen8);
+					bestellingLijst["totaalBitterballen8"] = Number(bestellingLijst["totaalBitterballen8"]) + Number(aantalBitterballen8);
 				}
 			}
 		}
@@ -48,7 +51,7 @@ while (loopBestelling == true) {
 				}
 				else {
 					loopBitterballen16 = false;
-					totaalBitterballen16 = Number(totaalBitterballen16) + Number(aantalBitterballen16);
+					bestellingLijst["totaalBitterballen16"] = Number(bestellingLijst["totaalBitterballen16"]) + Number(aantalBitterballen16);
 				}
 			}
 		}
@@ -65,7 +68,7 @@ while (loopBestelling == true) {
 			}
 			else {
 				loopAantalFris = false;
-				totaalAantalFris = Number(totaalAantalFris) + Number(aantalFris);
+				bestellingLijst["totaalAantalFris"] = Number(bestellingLijst["totaalAantalFris"]) + Number(aantalFris);
 			}
 		}		
 	}
@@ -78,7 +81,7 @@ while (loopBestelling == true) {
 			}
 			else {
 				loopAantalBier = false;
-				totaalAantalBier = Number(totaalAantalBier) + Number(aantalBier);
+				bestellingLijst["totaalAantalBier"] = Number(bestellingLijst["totaalAantalBier"]) + Number(aantalBier);
 			}
 		}
 	}
@@ -91,7 +94,7 @@ while (loopBestelling == true) {
 			}
 			else {
 				loopAantalWijn = false;
-				totaalAantalWijn = Number(totaalAantalWijn) + Number(aantalWijn);
+				bestellingLijst["totaalAantalWijn"] = Number(bestellingLijst["totaalAantalWijn"]) + Number(aantalWijn);
 			}
 		}
 	}
@@ -100,28 +103,28 @@ while (loopBestelling == true) {
 	}
 }
 function geefBon() {
-	var rekeningFris = PRIJSFRIS * totaalAantalFris;
-	var rekeningBier = PRIJSBIER * totaalAantalBier;
-	var rekeningWijn = PRIJSWIJN * totaalAantalWijn;
-	var rekeningBitterballen8 = totaalBitterballen8 * PRIJSBITTERBALLEN8;
-	var rekeningBitterballen16 = totaalBitterballen16 * PRIJSBITTERBALLEN16;
+	var rekeningFris = prijzenLijst["PRIJSFRIS"] * bestellingLijst["totaalAantalFris"];
+	var rekeningBier = prijzenLijst["PRIJSBIER"] * bestellingLijst["totaalAantalBier"];
+	var rekeningWijn = prijzenLijst["PRIJSWIJN"] * bestellingLijst["totaalAantalWijn"];
+	var rekeningBitterballen8 = prijzenLijst["PRIJSBITTERBALLEN8"] * bestellingLijst["totaalBitterballen8"];
+	var rekeningBitterballen16 = prijzenLijst["PRIJSBITTERBALLEN16"] * bestellingLijst["totaalBitterballen16"];
 	
 	var rekeningTotaal = Number(rekeningFris) + Number(rekeningBier) + Number(rekeningWijn) + Number(rekeningBitterballen8) + Number(rekeningBitterballen16);
 	
-	if (totaalAantalFris != 0) {
-		document.write(totaalAantalFris + "x Fris drankje(s) - \u20AC" + rekeningFris + ",-" + "<br>");
+	if (bestellingLijst["totaalAantalFris"] != 0) {
+		document.write(bestellingLijst["totaalAantalFris"] + "x Fris drankje(s) - \u20AC" + rekeningFris + ",-" + "<br>");
 	} else {}
-	if (totaalAantalBier != 0) {
-		document.write(totaalAantalBier + "x Biertje(s) - \u20AC" + rekeningBier + ",-" + "<br>");
+	if (bestellingLijst["totaalAantalBier"] != 0) {
+		document.write(bestellingLijst["totaalAantalBier"] + "x Biertje(s) - \u20AC" + rekeningBier + ",-" + "<br>");
 	} else {}
-	if (totaalAantalWijn != 0) {
-		document.write(totaalAantalWijn + "x Glas/glazen wijn - \u20AC" + rekeningWijn + ",-" + "<br>");
+	if (bestellingLijst["totaalAantalWijn"] != 0) {
+		document.write(bestellingLijst["totaalAantalWijn"] + "x Glas/glazen wijn - \u20AC" + rekeningWijn + ",-" + "<br>");
 	} else {}
-	if (totaalBitterballen8 != 0) {
-		document.write(totaalBitterballen8 + "x Klein bitterbalschaal - \u20AC" + rekeningBitterballen8 + ",-" + "<br>");
+	if (bestellingLijst["totaalBitterballen8"] != 0) {
+		document.write(bestellingLijst["totaalBitterballen8"] + "x Klein bitterbalschaal - \u20AC" + rekeningBitterballen8 + ",-" + "<br>");
 	} else{}
-	if (totaalBitterballen16 != 0) {
-		document.write(totaalBitterballen16 + "x Groot bitterbalschaal - \u20AC" + rekeningBitterballen16 + ",-" + "<br>");
+	if (bestellingLijst["totaalBitterballen16"] != 0) {
+		document.write(bestellingLijst["totaalBitterballen16"] + "x Groot bitterbalschaal - \u20AC" + rekeningBitterballen16 + ",-" + "<br>");
 	} else{}
 
 	
